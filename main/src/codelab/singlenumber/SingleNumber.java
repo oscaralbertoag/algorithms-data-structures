@@ -1,4 +1,4 @@
-package codelab;
+package codelab.singlenumber;
 
 import java.util.Collections;
 import java.util.List;

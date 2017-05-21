@@ -1,4 +1,4 @@
-package codelab;
+package codelab.singlenumber;
 
 import org.junit.Test;
 
