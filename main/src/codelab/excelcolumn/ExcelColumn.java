@@ -1,4 +1,4 @@
-package codelab;
+package codelab.excelcolumn;
 
 import java.util.HashMap;
 import java.util.Map;

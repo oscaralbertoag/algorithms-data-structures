@@ -1,4 +1,4 @@
-package codelab;
+package codelab.excelcolumn;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
