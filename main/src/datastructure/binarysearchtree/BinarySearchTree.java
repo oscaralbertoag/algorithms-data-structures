@@ -128,8 +128,8 @@ public class BinarySearchTree {
         }
     }
 
-    public void printPostOrder(){
-        if(isEmpty()) {
+    public void printPostOrder() {
+        if (isEmpty()) {
             System.out.println("BST is empty!");
         } else {
             System.out.println("Post-Order:");
@@ -138,32 +138,32 @@ public class BinarySearchTree {
         }
     }
 
-    private void printPostOrder(Node current){
-        if(current != null) {
-            if(current.getLeft() != null){
+    private void printPostOrder(Node current) {
+        if (current != null) {
+            if (current.getLeft() != null) {
                 printPostOrder(current.getLeft());
             }
-            if(current.getRight() != null) {
+            if (current.getRight() != null) {
                 printPostOrder(current.getRight());
             }
             System.out.print("|" + current.getData() + "|");
         }
     }
 
-    public void printLevelOrder(){
+    public void printLevelOrder() {
         System.out.println("Level-order:");
-        for(int i=1; i<=height(getRoot())+1; i++) {
+        for (int i = 1; i <= height(getRoot()) + 1; i++) {
             printLevel(getRoot(), i);
         }
     }
 
     private void printLevel(Node root, int level) {
-        if(root != null) {
-            if(level == 1) {
+        if (root != null) {
+            if (level == 1) {
                 System.out.print("|" + root.getData() + "|");
             } else {
-                printLevel(root.getLeft(), level-1);
-                printLevel(root.getRight(), level-1);
+                printLevel(root.getLeft(), level - 1);
+                printLevel(root.getRight(), level - 1);
             }
         }
     }
@@ -173,14 +173,14 @@ public class BinarySearchTree {
     }
 
     private Node delete(Node current, int key) {
-        if(current == null) {
+        if (current == null) {
             return null;
-        } else if(current.getData() == key) {
-            if(current.getLeft() == null && current.getRight() == null) {
+        } else if (current.getData() == key) {
+            if (current.getLeft() == null && current.getRight() == null) {
                 return null;
-            } else if(current.getLeft() == null) {
+            } else if (current.getLeft() == null) {
                 return current.getRight();
-            } else if(current.getRight() == null) {
+            } else if (current.getRight() == null) {
                 return current.getLeft();
             } else {
                 Node smallest = smallest(current.getRight());
@@ -190,7 +190,7 @@ public class BinarySearchTree {
                 current.setRight(delete(current.getRight(), key));
                 return current;
             }
-        } else if(key < current.getData()) {
+        } else if (key < current.getData()) {
             current.setLeft(delete(current.getLeft(), key));
             return current;
         } else {
@@ -200,37 +200,38 @@ public class BinarySearchTree {
     }
 
     public Node smallest(Node current) {
-        if(current.getLeft() != null) {
+        if (current.getLeft() != null) {
             return smallest(current.getLeft());
         } else {
             return current;
         }
     }
 
-    public void printHeight(){
-         System.out.println("Height: " + height(root));
+    public void printHeight() {
+        System.out.println("Height: " + height(root));
     }
 
-
-    private int height(Node root){
-        if(root == null || (root.getLeft() == null && root.getRight() == null)){
+    protected int height(Node root) {
+        if (root == null || (root.getLeft() == null && root.getRight() == null)) {
             return 0;
         } else {
             int left, right;
             left = height(root.getLeft());
             right = height(root.getRight());
-            return 1 + (left>right?left:right);
+            return 1 + (left > right ? left : right);
         }
     }
 
     public boolean isSubtree(Node current, Node currentSubtree, Node subtreeRoot) {
-        if(current != null && currentSubtree != null) {
-            if(current.getData() == currentSubtree.getData()) {
-                return isSubtree(current.getLeft(), currentSubtree.getLeft(), subtreeRoot) && isSubtree(current.getRight(), currentSubtree.getRight(), subtreeRoot);
+        if (current != null && currentSubtree != null) {
+            if (current.getData() == currentSubtree.getData()) {
+                return isSubtree(current.getLeft(), currentSubtree.getLeft(), subtreeRoot) && isSubtree(current.getRight(),
+                    currentSubtree.getRight(), subtreeRoot);
             } else {
-                return isSubtree(current.getLeft(), subtreeRoot, subtreeRoot) || isSubtree(current.getRight(), subtreeRoot, subtreeRoot);
+                return isSubtree(current.getLeft(), subtreeRoot, subtreeRoot) || isSubtree(current.getRight(), subtreeRoot,
+                    subtreeRoot);
             }
-        } else if((current == null && currentSubtree != null) || (current != null)) {
+        } else if ((current == null && currentSubtree != null) || (current != null)) {
             return false;
         }
         return true;
